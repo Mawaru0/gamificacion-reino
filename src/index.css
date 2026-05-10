@@ -70,10 +70,45 @@ p {
   min-height: 100vh;
   max-width: 1240px;
   margin: 0 auto;
-  padding: 28px;
+  padding: clamp(12px, 2vw, 28px);
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  /* Escala general de la interfaz */
+  --ui-scale: 1;
+  transform: scale(var(--ui-scale));
+  transform-origin: center center;
+}
+
+/* ===== ESCALA SEGÚN PANTALLA ===== */
+
+/* Laptops medianas */
+@media (max-width: 1280px), (max-height: 820px) {
+  .page {
+    --ui-scale: 0.92;
+  }
+}
+
+/* Laptops más pequeñas */
+@media (max-width: 1180px), (max-height: 760px) {
+  .page {
+    --ui-scale: 0.86;
+  }
+}
+
+/* Pantallas muy bajitas */
+@media (max-height: 700px) {
+  .page {
+    --ui-scale: 0.8;
+  }
+}
+
+/* Pantallas estrechas, pero aún en modo desktop */
+@media (max-width: 1020px) {
+  .page {
+    --ui-scale: 0.82;
+  }
 }
 
 /* BARRA SUPERIOR */
@@ -840,6 +875,85 @@ h1 {
 /* RESPONSIVE */
 
 @media (max-width: 900px) {
+  .page {
+    padding: 16px;
+    justify-content: flex-start;
+    transform: none;
+    max-width: 100%;
+  }
+
+  .topBar,
+  .shopHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .teamSelectBox select {
+    min-width: 100%;
+  }
+
+  .mainWindowWrap {
+    aspect-ratio: auto;
+    min-height: 760px;
+    background: rgba(255, 247, 232, 0.93);
+    border: 2px solid #e7c97b;
+    border-radius: 28px;
+    padding: 16px;
+  }
+
+  .greenFrameAsset,
+  .greenFrameShield,
+  .greenFrameLeaves,
+  .mainWindowAsset {
+    display: none;
+  }
+
+  .innerPanelWrap {
+    position: relative;
+    inset: auto;
+    background: rgba(255, 247, 232, 0.94);
+    border: 2px solid #e7c97b;
+    border-radius: 28px;
+    padding: 18px;
+  }
+
+  .mainWindowContent {
+    position: relative;
+    inset: auto;
+  }
+
+  .tabs {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    grid-template-columns: 1fr;
+    margin-bottom: 18px;
+  }
+
+  .profileGrid,
+  .missionsGrid,
+  .shopGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .verticalDivider {
+    display: none;
+  }
+
+  .profileGrid > .assetCard:first-child,
+  .missionsGrid > .assetCard:first-child {
+    padding-right: 0;
+    padding-bottom: 24px;
+    margin-right: 0;
+    margin-bottom: 24px;
+    border-bottom: 1.5px solid rgba(199, 156, 72, 0.55);
+  }
+
+  h1 {
+    font-size: 31px;
+  }
+}@media (max-width: 900px) {
   .page {
     padding: 16px;
     justify-content: flex-start;

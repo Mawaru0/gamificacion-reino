@@ -52,6 +52,7 @@ const avatarMap = {
   "Equipo 4": almacenIcon,
   "Equipo 5": produccionIcon,
   "Equipo 6": calidadIcon,
+  "Equipo 7": calidadIcon,
 };
 
 const teamNameMap = {
@@ -61,6 +62,7 @@ const teamNameMap = {
   "Equipo 4": "Almacén",
   "Equipo 5": "Producción",
   "Equipo 6": "Calidad",
+  "Equipo 7": "TI",
 };
 
 function getTeamDisplayName(equipo) {

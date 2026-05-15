@@ -410,19 +410,23 @@ function buildTeamsFromRows(rows) {
 
     if (!teamMap[teamId]) {
   teamMap[teamId] = {
-    id: teamId,
-    nombre: getTeamDisplayName(equipo),
-    metaPrincipal: "",
-    metaFinal: "",
-    metaDescripcion: "",
-    metaEstado: "En progreso",
-    reputacion: 0,
-    rango: row.rango || "Rango",
-    progreso: 0,
-    avatar: avatarMap[equipo] ?? comprasIcon,
-  };
+  id: teamId,
+  nombre: getTeamDisplayName(equipo),
+  metaPrincipal: "",
+  metaFinal: "",
+  metaDescripcion: "",
+  metaEstado: "En progreso",
+  reputacion: 0,
+  rango: row.rango || "Rango",
+  progreso: 0,
+  sesionesAsistidas: normalizeNumber(row.sesiones_asistidas),
+  avatar: avatarMap[equipo] ?? comprasIcon,
+};
 }
 
+if (row.sesiones_asistidas) {
+  teamMap[teamId].sesionesAsistidas = normalizeNumber(row.sesiones_asistidas);
+}
    
 
     if (isMetaRow(row.tipo)) {
@@ -887,11 +891,10 @@ function Perfil({ team, missions }) {
           <div style={{ width: `${team.progreso}%` }} />
         </div>
 
-        <div className="miniGrid">
-          <SmallCard label="Retos totales" value={missions.length} />
-          <SmallCard label="En progreso" value={inProgress} />
-          <SmallCard label="Completados" value={completed} />
-        </div>
+        <div className="miniGrid profileMiniGridTwo">
+  <SmallCard label="Retos por sesión" value={missions.length} />
+  <SmallCard label="Sesiones asistidas" value={team.sesionesAsistidas || 0} />
+</div>
 
         <p className="note">
           El avance se actualiza según los retos registrados por el equipo.
